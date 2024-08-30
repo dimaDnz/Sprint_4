@@ -3,10 +3,6 @@ package praktikum.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class SecondFormPage {
     final WebDriver driver;
@@ -14,42 +10,43 @@ public class SecondFormPage {
         this.driver=driver;
     }
 
-    private static final By dateOfOrderClick = By.xpath("/html/body/div/div/div[2]/div[2]/div[1]/div/div/input");
-    private static final By dateOfOrderSelect = By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div[2]/div[2]/div[4]");
-    private static final By daysOfRentClick = By.xpath("/html/body/div/div/div[2]/div[2]/div[2]/div[1]/div[1]");
-    private static final By daysOfRentSelect = By.xpath("/html/body/div/div/div[2]/div[2]/div[2]/div[2]/div[4]");
-    private static final By pickDeColor = By.xpath("/html/body/div/div/div[2]/div[2]/div[3]/label[1]/input");
-    private static final By orderButton = By.xpath("/html/body/div/div/div[2]/div[3]/button[2]");
-    private static final By confirmButton = By.xpath("/html/body/div/div/div[2]/div[5]/div[2]/button[2]");
+    //TODO - локаторы
+    private static final By DATE_OF_ORDER_CLICK = By.xpath("/html/body/div/div/div[2]/div[2]/div[1]/div/div/input");
+    private static final By DATE_OF_ORDER_SELECT = By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div[2]/div[2]/div[4]");
+    private static final By DAYS_OF_RENT_CLICK = By.xpath("/html/body/div/div/div[2]/div[2]/div[2]/div[1]/div[1]");
+    private static final By DAYS_OF_RENT_SELECT = By.xpath("/html/body/div/div/div[2]/div[2]/div[2]/div[2]/div[4]");
+    private static final By PICK_DE_COLOR = By.xpath("/html/body/div/div/div[2]/div[2]/div[3]/label[1]/input");
 
-    private static final By headerOfSuccess = By.xpath("/html/body/div/div/div[2]/div[5]/div[1]");
+    private static final By ORDER_BUTTON = By.xpath(".//div[starts-with(@class, 'Order_Buttons')]/button[not(contains(@class,'Button_Inverted'))]");
+    private static final By CONFIRM_BUTTON = By.xpath(".//div[starts-with(@class, 'Order_Modal')]//button[not(contains(@class,'Button_Inverted'))]");
+    private static final By HEADER_OF_SUCCESS = By.xpath(".//div[starts-with(@class, 'Order_Modal')]//div[(starts-with(@class,'Order_ModalHeader'))]");
 
     public void pickDeDate() throws InterruptedException {
-        Thread.sleep(500);
-        driver.findElement(dateOfOrderClick).click();
-        driver.findElement(dateOfOrderSelect).click();
+
+        driver.findElement(DATE_OF_ORDER_CLICK).click();
+        driver.findElement(DATE_OF_ORDER_SELECT).click();
     }
 
     public void pickDaysOfRent(){
-        driver.findElement(daysOfRentClick).click();
-        driver.findElement(daysOfRentSelect).click();
+        driver.findElement(DAYS_OF_RENT_CLICK).click();
+        driver.findElement(DAYS_OF_RENT_SELECT).click();
     }
 
     public void pickColor(){
-        driver.findElement(pickDeColor).click();
+        driver.findElement(PICK_DE_COLOR).click();
     }
 
     public void pressOrder(){
-        driver.findElement(orderButton).click();
+        driver.findElement(ORDER_BUTTON).click();
     }
 
     public void pressConfirm(){
-        driver.findElement(confirmButton).click();
+        driver.findElement(CONFIRM_BUTTON).click();
     }
 
     public String getTextOfHeader() throws InterruptedException {
-        Thread.sleep(500);
-        WebElement headerOfSuccessForm = driver.findElement(headerOfSuccess);
+//        Thread.sleep(500);
+        WebElement headerOfSuccessForm = driver.findElement(HEADER_OF_SUCCESS);
         return headerOfSuccessForm.getText();
     }
 }
