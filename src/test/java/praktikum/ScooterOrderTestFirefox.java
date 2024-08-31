@@ -25,19 +25,22 @@ public class ScooterOrderTestFirefox {
     private  String secondName;
     private String address;
     private String phone;
+    private int station;
 
-    public ScooterOrderTestFirefox(String firstName, String secondName, String address, String phone){
+
+    public ScooterOrderTestFirefox(String firstName, String secondName, String address, String phone, int station){
         this.firstName = firstName;
         this.secondName = secondName;
         this.address = address;
         this.phone = phone;
+        this.station = station;
     }
     @Parameterized.Parameters
     public static Object[][] getFormData() {
 
         return new Object[][]{
-                {"Иван", "Иванов", "Москва ул.Пушкина д.Колотушкина", "+78005553535"},
-                {"Авдотья", "Никитишна", "Антарктида, ст.Биполярная", "+78881239876"},
+                {"Иван", "Иванов", "Москва ул.Пушкина д.Колотушкина", "+78005553535", 19},
+                {"Авдотья", "Никитишна", "Антарктида, ст.Биполярная", "+78881239876", 15},
         };
     }
 
@@ -61,7 +64,7 @@ public class ScooterOrderTestFirefox {
         firstFormPage.typeFirstName(this.firstName);
         firstFormPage.typeSecondName(this.secondName);
         firstFormPage.typeAddress(this.address);
-        firstFormPage.chooseStation();
+        firstFormPage.chooseStation(this.station);
         firstFormPage.printPhone(this.phone);
 
         SecondFormPage secondFormPage = firstFormPage.clickNextButton();

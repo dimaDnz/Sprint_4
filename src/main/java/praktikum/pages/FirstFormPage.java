@@ -1,7 +1,9 @@
 package praktikum.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -18,11 +20,7 @@ public class FirstFormPage {
     private static final By FIRST_NAME = By.xpath(".//div[starts-with(@class, 'Order_Form')]//input[contains(@placeholder,'Имя')]");
     private static final By SECOND_NAME = By.xpath(".//div[starts-with(@class, 'Order_Form')]//input[contains(@placeholder,'Фамилия')]");
     private static final By ADDRESS = By.xpath(".//div[starts-with(@class, 'Order_Form')]//input[contains(@placeholder,'Адрес')]");
-
-    //СТАРЫЕ СЕЛЕКТОРЫ
-    private static final By METRO_SELECTOR = By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/div[4]/div/div[1]/input");
-    private static final By SELECT_STATION = By.xpath("/html/body/div/div/div[2]/div[2]/div[4]/div/div[2]/ul/li[6]/button");
-
+    private static final By METRO_SELECTOR = By.xpath(".//div[starts-with(@class, 'Order_Form')]//input[contains(@placeholder,'Станция метро')]");
     private static final By PHONE = By.xpath(".//div[starts-with(@class, 'Order_Form')]//input[contains(@placeholder,'Телефон')]");
     private static final By NEXT_BUTTON = By.xpath(".//div[starts-with(@class, 'Order_NextButton')]/button");
 
@@ -43,9 +41,13 @@ public class FirstFormPage {
         driver.findElement(ADDRESS).sendKeys(myAddress);
     }
 
-    public void chooseStation(){
+    public void chooseStation(int station){
         driver.findElement(METRO_SELECTOR).click();
-        driver.findElement(SELECT_STATION).click();
+        String dataAtr = String.format(".//li[@data-value='%s']", station);
+        WebElement ddlStation = driver.findElement(By.xpath(dataAtr));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", ddlStation);
+        ddlStation.click();
+
     }
 
     public void printPhone(String userPhone){
