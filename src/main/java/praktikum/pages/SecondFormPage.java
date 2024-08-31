@@ -33,7 +33,7 @@ public class SecondFormPage {
 
 
     }
-    //todo можно вкорячить параметризацию
+
     public void pickDaysOfRent(){
         driver.findElement(DAYS_OF_RENT_CLICK).click();
         driver.findElements(DAYS_OF_RENT_SELECT).get(0).click();

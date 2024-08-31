@@ -51,7 +51,7 @@ public class ScooterOrderTestFirefox {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
-    //TODO Добавить параметризацию
+
 
     @Test
     public void orderTestSuccessMainPage() throws InterruptedException {

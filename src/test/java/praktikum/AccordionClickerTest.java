@@ -66,7 +66,7 @@ public class AccordionClickerTest {
         //click on accept cookies button
         main.acceptCookies();
 
-//TODO вынести переменную в клас MainPage
+
         String heading = String.format("accordion__heading-%s",this.locator);
         WebElement accordionHeader = driver.findElement(By.id(heading));
 
