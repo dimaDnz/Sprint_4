@@ -15,7 +15,7 @@ public class MainPage {
 
     private By cookiesButton = By.className("App_CookieButton__3cvqF");
     private By headerOrderButton = By.xpath(".//button[@class='Button_Button__ra12g']");
-    private By mainOrderButton = By.xpath("/html/body/div/div/div/div[4]/div[2]/div[5]/button");
+    private By mainOrderButton = By.xpath(".//button[@class='Button_Button__ra12g Button_UltraBig__UU3Lp']");
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
@@ -42,6 +42,30 @@ public class MainPage {
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", orderButton);
         orderButton.click();
         return new FirstFormPage(driver);
+    }
+
+    public boolean hasAccordion(String locator){
+        String heading = String.format("accordion__heading-%s", locator);
+        WebElement accordionHeader = driver.findElement(By.id(heading));
+
+        //print accordion header text
+        String accordionHeaderText = accordionHeader.getText();
+        System.out.println("Текст заголовка аккордеона: \""+ accordionHeaderText + "\"");
+
+        //scroll to element
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", accordionHeader);
+
+        //click on element
+        accordionHeader.click();
+
+        String panel = String.format("accordion__panel-%s",locator);
+        WebElement accordionPanel = driver.findElement(By.id(panel));
+
+        //print accordeon panel text
+        String accordionPanelText = accordionPanel.getText();
+        System.out.println("Текст панели аккордеона: \""+accordionPanelText+"\"");
+
+        return accordionPanel.isDisplayed();
     }
 
 }

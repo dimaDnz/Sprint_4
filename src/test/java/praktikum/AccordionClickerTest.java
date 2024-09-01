@@ -6,10 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import praktikum.pages.MainPage;
@@ -66,28 +63,8 @@ public class AccordionClickerTest {
         //click on accept cookies button
         main.acceptCookies();
 
-
-        String heading = String.format("accordion__heading-%s",this.locator);
-        WebElement accordionHeader = driver.findElement(By.id(heading));
-
-        //print accordion header text
-        String accordionHeaderText = accordionHeader.getText();
-        System.out.println("Текст заголовка аккордеона: \""+ accordionHeaderText + "\"");
-
-        //scroll to element
-        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", accordionHeader);
-
-        //click on element
-        accordionHeader.click();
-
-        String panel = String.format("accordion__panel-%s",this.locator);
-        WebElement accordionPanel = driver.findElement(By.id(panel));
-
-        //print accordeon panel text
-        String accordionPanelText = accordionPanel.getText();
-        System.out.println("Текст панели аккордеона: \""+accordionPanelText+"\"");
-
-        assertEquals("error not found", expectedResult, accordionPanel.isDisplayed());
+        boolean result = main.hasAccordion(this.locator);
+        assertEquals("error not found", expectedResult, result);
     }
 
     @After
